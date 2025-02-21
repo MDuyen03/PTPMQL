@@ -12,22 +12,28 @@ namespace MvcMovie.Controllers
         [HttpPost]
         public ActionResult Index(BMI bmi)
     {
-        if (bmi.Weight <= 0 || bmi.Hight <= 0)
+        double bmiResult = (bmi.Weight/(bmi.Height * bmi.Height));
+        string strOutput = "Chỉ số BMI của bạn là: " + bmiResult;
+        ViewBag.infoBMI = strOutput;
+        if ( bmi.Weight <=0 || bmi.Height <=0)
         {
-            @ViewBag.Message = "Vui lòng nhập cân nặng và chiều cao hợp lệ!";
-        
-        }else{
-            float bmiResult = bmi.Weight/(bmi.Hight * bmi.Hight);
-            string strOutput = "Chỉ số BMI của bạn là:" + bmiResult;
-            ViewBag.infoBMI = strOutput;
+            @ViewBag.BMIResult = "Nhập giá trị lớn hơn!";
         }
-        
-
+        else {
+            if (bmiResult < 18.5){
+                @ViewBag.BMIResult = strOutput + " Gầy";
+            }
+            else if (bmiResult >= 18.5 && bmiResult < 24.9){
+                @ViewBag.BMIResult = strOutput + " Bình thường"; 
+            }
+            else if (bmiResult >= 25 && bmiResult < 29.9){
+                @ViewBag.BMIResult = strOutput + " Thừa cân";
+            }
+            else
+            @ViewBag.BMIResult = " Béo phì";
+            @ViewBag.Message = "Vui lòng nhập cân nặng và chiều cao hợp lệ!";
+        }
         return View();
     }
-    public IActionResult Creat()
-        {
-            return View();
-        }
     }
 }

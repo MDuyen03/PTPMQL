@@ -1,10 +1,10 @@
+using System.ComponentModel.DataAnnotations;
 namespace MvcMovie.Models
 {
     public class BMI
     {
-        public float Hight { get; set; }
-        public float Weight { get; set; } 
-    
+        public double Height { get; set; }
+        public double Weight { get; set; } 
         
     }
 }
