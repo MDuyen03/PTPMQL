@@ -1,12 +1,16 @@
 using Microsoft.EntityFrameworkCore;
-using MvcMovie.Models;
+using MvcMovie.Models; // Đảm bảo đúng namespace chứa Model của bạn
+
 namespace MvcMovie.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {}
-        public DbSet<Person> Person { get; set;}
-        public DbSet<Employee> Employee { get; set;}
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<Daily> Daily { get; set; } 
+        public DbSet<HeThongPhanPhoi> HeThongPhanPhoi { get;}
     }
 }
